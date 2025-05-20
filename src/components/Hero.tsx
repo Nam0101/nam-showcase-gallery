@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { Parallax } from 'react-scroll-parallax';
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
+import AuroraGradient from './ui/aurora_gradient';
+import AuroraBlobs from './ui/aurora_blobs';
 
 const REVEAL_DURATION_PER_CHAR = 0.04; // seconds per character
 const REVEAL_MIN_DURATION = 0.5; // seconds
@@ -20,6 +22,21 @@ const lines = [
 function getRevealDuration(length: number): number {
   return Math.max(REVEAL_MIN_DURATION, Math.min(REVEAL_MAX_DURATION, length * REVEAL_DURATION_PER_CHAR));
 }
+
+// Animation variants
+const textRevealVariant = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (custom: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: custom, duration: 0.7, ease: "easeOut" }
+  })
+};
+
+const buttonGroupVariant = {
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { delay: 2.5, duration: 0.7, ease: "easeOut" } }
+};
 
 const RevealText: React.FC<{ text: string; delay: number; className?: string }> = ({ text, delay, className }) => {
   const [revealed, setRevealed] = useState(false);
@@ -79,6 +96,8 @@ const Hero = () => {
       className="min-h-screen flex items-center section-padding pt-24 relative overflow-hidden"
       onMouseMove={handleMouseMove}
     >
+      <AuroraBlobs />
+      <AuroraGradient />
       <style>{`
         .reveal-text {
           clip-path: inset(0 100% 0 0);
@@ -116,21 +135,6 @@ const Hero = () => {
           detectRetina: true,
         }}
       />
-      {/* Custom mouse-follow gradient background */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none -z-10"
-        style={{
-          background: `radial-gradient(600px at ${gradientPos.x}% ${gradientPos.y}%, rgba(14,165,233,0.18) 0%, rgba(30,41,59,0.7) 100%)`,
-        }}
-        animate={{
-          background: `radial-gradient(600px at ${gradientPos.x}% ${gradientPos.y}%, rgba(14,165,233,0.18) 0%, rgba(30,41,59,0.7) 100%)`,
-        }}
-        transition={{
-          type: "tween",
-          duration: 0.4,
-          ease: "easeOut"
-        }}
-      />
       {/* Animated floating shapes */}
       <Parallax speed={-30} className="absolute inset-0 -z-10 pointer-events-none">
         {/* Shape 1: Strong parallax, rotation, scale, blue glow */}
@@ -142,7 +146,7 @@ const Hero = () => {
             translateX: (mousePos.x - 0.5) * 180,
             translateY: (mousePos.y - 0.5) * 180,
             rotate: (mousePos.x - 0.5) * 40,
-            scale: 1 + (mousePos.y - 0.5) * 0.15,
+            scale: [1, 1.12, 1], // pulsing
             boxShadow: `0 0 ${(mousePos.x - 0.5) * 60}px 20px rgba(14,165,233,0.25)`
           }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
@@ -156,7 +160,7 @@ const Hero = () => {
             translateX: (mousePos.x - 0.5) * 240,
             translateY: (mousePos.y - 0.5) * 200,
             rotate: (mousePos.y - 0.5) * -50,
-            scale: 1 + (mousePos.x - 0.5) * 0.18,
+            scale: [1, 1.15, 1], // pulsing
             boxShadow: `0 0 ${(mousePos.y - 0.5) * 80}px 24px rgba(168,139,250,0.18)`
           }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
@@ -170,7 +174,7 @@ const Hero = () => {
             translateX: (mousePos.x - 0.5) * 120,
             translateY: (mousePos.y - 0.5) * 120,
             rotate: (mousePos.x + mousePos.y - 1) * 30,
-            scale: 1 + (mousePos.x - 0.5) * 0.12,
+            scale: [1, 1.10, 1], // pulsing
             boxShadow: `0 0 ${(mousePos.x + mousePos.y - 1) * 60}px 16px rgba(244,114,182,0.18)`
           }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
@@ -184,26 +188,55 @@ const Hero = () => {
             translateX: (mousePos.x - 0.5) * 200,
             translateY: (mousePos.y - 0.5) * 160,
             rotate: (mousePos.y - 0.5) * 60,
-            scale: 1 + (mousePos.y - 0.5) * 0.14,
+            scale: [1, 1.13, 1], // pulsing
             boxShadow: `0 0 ${(mousePos.y - 0.5) * 70}px 18px rgba(250,204,21,0.18)`
           }}
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
         />
       </Parallax>
       <div className="container mx-auto">
-        <p className={lines[0].className}>
+        <motion.p
+          className={lines[0].className}
+          variants={textRevealVariant}
+          initial="hidden"
+          animate="visible"
+          custom={delays[0]}
+        >
           <RevealText text={lines[0].text} delay={delays[0]} />
-        </p>
-        <h1 className={lines[1].className}>
+        </motion.p>
+        <motion.h1
+          className={lines[1].className}
+          variants={textRevealVariant}
+          initial="hidden"
+          animate="visible"
+          custom={delays[1]}
+        >
           <RevealText text={lines[1].text} delay={delays[1]} />
-        </h1>
-        <h2 className={lines[2].className}>
+        </motion.h1>
+        <motion.h2
+          className={lines[2].className}
+          variants={textRevealVariant}
+          initial="hidden"
+          animate="visible"
+          custom={delays[2]}
+        >
           <RevealText text={lines[2].text} delay={delays[2]} />
-        </h2>
-        <p className={lines[3].className}>
+        </motion.h2>
+        <motion.p
+          className={lines[3].className}
+          variants={textRevealVariant}
+          initial="hidden"
+          animate="visible"
+          custom={delays[3]}
+        >
           <RevealText text={lines[3].text} delay={delays[3]} />
-        </p>
-        <div className="flex gap-4">
+        </motion.p>
+        <motion.div
+          className="flex gap-4"
+          variants={buttonGroupVariant}
+          initial="hidden"
+          animate="visible"
+        >
           <motion.button
             whileHover={{ scale: 1.08, boxShadow: "0 4px 24px rgba(0,0,0,0.12)" }}
             whileTap={{ scale: 0.96 }}
@@ -220,7 +253,7 @@ const Hero = () => {
           >
             <Button className="btn-secondary">Get In Touch</Button>
           </motion.button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
