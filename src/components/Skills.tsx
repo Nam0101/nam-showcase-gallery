@@ -8,51 +8,64 @@ interface SkillCategory {
 
 const skillCategories: SkillCategory[] = [
   {
-    name: "Frontend",
+    name: "Android Development",
     skills: [
-      "HTML5",
-      "CSS3",
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Redux",
-      "Vue.js",
-      "Tailwind CSS",
-      "Styled Components"
+      "Kotlin",
+      "Java",
+      "Jetpack Compose",
+      "Android SDK",
+      "MVVM Architecture",
+      "Material Design",
+      "Kotlin Coroutines",
+      "Room Database",
+      "Navigation Component",
+      "WorkManager",
+      "Dagger/Hilt",
+      "LiveData/Flow"
     ]
   },
   {
-    name: "Backend",
+    name: "Mobile Technologies",
     skills: [
-      "Node.js",
-      "Express",
-      "Python",
-      "Django",
-      "REST API",
-      "GraphQL"
+      "RESTful APIs",
+      "Firebase",
+      "Google Play Services",
+      "SQLite",
+      "Retrofit",
+      "Glide/Coil",
+      "Push Notifications",
+      "Google Maps API",
+      "Location Services",
+      "Bluetooth/NFC"
     ]
   },
   {
-    name: "Database",
+    name: "Development Tools",
     skills: [
-      "MongoDB",
-      "PostgreSQL",
-      "MySQL",
-      "Firebase"
-    ]
-  },
-  {
-    name: "Tools & Others",
-    skills: [
+      "Android Studio",
       "Git",
       "GitHub",
-      "Docker",
-      "CI/CD",
-      "Jest",
-      "AWS",
+      "Gradle",
       "Figma",
-      "Responsive Design",
-      "Agile Methodology"
+      "Jira/Trello",
+      "JUnit/Espresso",
+      "Crashlytics",
+      "Google Play Console",
+      "CI/CD"
+    ]
+  },
+  {
+    name: "Web & Other Skills",
+    skills: [
+      "HTML5/CSS3",
+      "JavaScript/TypeScript",
+      "React",
+      "Node.js",
+      "REST API Design",
+      "JSON/XML",
+      "Agile Methodology",
+      "UI/UX Principles",
+      "App Performance Optimization"
     ]
   }
 ];
@@ -63,8 +76,8 @@ const Skills = () => {
       <div className="container mx-auto">
         <h2 className="section-title">Skills & Technologies</h2>
         <p className="mb-10 text-slate max-w-2xl">
-          I've worked with a variety of technologies in the web development world.
-          From frontend to backend, here's a comprehensive list of my technical skills.
+          I specialize in Android development with extensive experience across the Android ecosystem.
+          My technical skills range from core Android development to supporting technologies.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

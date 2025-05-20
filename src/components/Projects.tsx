@@ -13,26 +13,36 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: "Quiz App",
-    description: "Interactive quiz application with multiple categories and difficulty levels.",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
-    techStack: ["React", "Redux", "Node.js", "MongoDB"],
-    demoUrl: "https://quiz-app-demo.example.com",
-    githubUrl: "https://github.com/Nam0101/quiz-app",
-    featured: false
+    title: "Android Weather App",
+    description: "Native Android weather application with location-based forecasts, widgets, and material design.",
+    image: "https://images.unsplash.com/photo-1601134467661-3d775b999c8b?auto=format&fit=crop&w=800&q=80",
+    techStack: ["Kotlin", "Jetpack Compose", "Room", "Retrofit", "MVVM"],
+    demoUrl: "https://play.google.com/store/apps/details?id=com.example.weatherapp",
+    githubUrl: "https://github.com/Nam0101/android-weather-app",
+    featured: true
   },
   {
     id: 3,
-    title: "Personal Finance Tracker",
-    description: "Application to help users track expenses, income, and manage budgets.",
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
-    techStack: ["Vue.js", "Firebase", "Chart.js"],
-    demoUrl: "https://finance-tracker-demo.example.com",
-    githubUrl: "https://github.com/Nam0101/finance-tracker",
+    title: "Fitness Tracker",
+    description: "Android fitness application that tracks workouts, calories, and progress with custom animations.",
+    image: "https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=800&q=80",
+    techStack: ["Java", "Firebase", "Google Fit API", "MPAndroidChart"],
+    demoUrl: "https://play.google.com/store/apps/details?id=com.example.fitnesstracker",
+    githubUrl: "https://github.com/Nam0101/fitness-tracker",
     featured: false
   },
   {
     id: 4,
+    title: "E-Commerce Mobile App",
+    description: "Full-featured Android shopping application with payment integration and real-time inventory.",
+    image: "https://images.unsplash.com/photo-1607082350899-7e105aa886ae?auto=format&fit=crop&w=800&q=80",
+    techStack: ["Kotlin", "Dagger Hilt", "Coroutines", "Room", "Stripe API"],
+    demoUrl: "https://play.google.com/store/apps/details?id=com.example.shopapp",
+    githubUrl: "https://github.com/Nam0101/android-shop-app",
+    featured: false
+  },
+  {
+    id: 5,
     title: "Algorithm Visualizer",
     description: "Visualize various sorting and pathfinding algorithms in real time",
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
@@ -42,13 +52,13 @@ const projects: Project[] = [
     featured: true
   },
   {
-    id: 5,
-    title: "Weather Dashboard",
-    description: "Real-time weather application with 5-day forecast and location detection",
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=800&q=80",
-    techStack: ["React", "Weather API", "Geolocation API"],
-    demoUrl: "https://weather-dash-demo.example.com",
-    githubUrl: "https://github.com/Nam0101/weather-dashboard",
+    id: 6,
+    title: "Social Media Companion",
+    description: "Android app that helps users manage multiple social media accounts with scheduling features.",
+    image: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=800&q=80",
+    techStack: ["Kotlin", "WorkManager", "Social Media APIs", "Jetpack Navigation"],
+    demoUrl: "https://play.google.com/store/apps/details?id=com.example.socialcompanion",
+    githubUrl: "https://github.com/Nam0101/social-companion",
     featured: false
   }
 ];
@@ -59,8 +69,8 @@ const Projects = () => {
       <div className="container mx-auto">
         <h2 className="section-title">Projects</h2>
         <p className="mb-10 text-slate max-w-2xl">
-          A collection of projects that I've built. Each project is a unique piece
-          that showcases my skills and passion for building exceptional web experiences.
+          A collection of projects that I've built, with a focus on Android development.
+          Each project showcases different skills and technologies in mobile app development.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
