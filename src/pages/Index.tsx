@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
@@ -12,7 +11,6 @@ const Index = () => {
   return (
     <ParallaxProvider>
       <div className="min-h-screen bg-navy text-white">
-        <Navbar />
         <AnimatedSection><Hero /></AnimatedSection>
         <AnimatedSection delay={0.1}><About /></AnimatedSection>
         <AnimatedSection delay={0.2}><Projects /></AnimatedSection>

@@ -1,5 +1,8 @@
-
 import ProjectCard, { Project } from "./ProjectCard";
+import AnimatedSection from "./AnimatedSection";
+import React, { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import ProjectDetailModal from "./ProjectDetailModal";
 
 const projects: Project[] = [
   {
@@ -64,20 +67,39 @@ const projects: Project[] = [
 ];
 
 const Projects = () => {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const handleCardClick = (project: Project) => setSelectedProject(project);
+  const handleCloseModal = () => setSelectedProject(null);
+
   return (
     <section id="projects" className="section-padding">
       <div className="container mx-auto">
-        <h2 className="section-title">Projects</h2>
-        <p className="mb-10 text-slate max-w-2xl">
-          A collection of projects that I've built, with a focus on Android development.
-          Each project showcases different skills and technologies in mobile app development.
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
+        <AnimatedSection>
+          <h2 className="section-title">Projects</h2>
+          <p className="mb-10 text-slate max-w-2xl">
+            A collection of projects that I've built, with a focus on Android development.
+            Each project showcases different skills and technologies in mobile app development.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                layoutId={`project-card-${project.id}`}
+                onClick={() => handleCardClick(project)}
+              />
+            ))}
+          </div>
+        </AnimatedSection>
+        <AnimatePresence>
+          {selectedProject && (
+            <ProjectDetailModal
+              project={selectedProject}
+              layoutId={`project-card-${selectedProject.id}`}
+              onClose={handleCloseModal}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

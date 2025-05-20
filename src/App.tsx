@@ -7,14 +7,15 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Navbar from "@/components/Navbar";
 
 const queryClient = new QueryClient();
 
 const PageTransitionWrapper = ({ children }: { children: React.ReactNode }) => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -30 }}
+    initial={{ opacity: 0, y: 30, scale: 0.98, filter: 'blur(12px)' }}
+    animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+    exit={{ opacity: 0, y: -30, scale: 0.98, filter: 'blur(12px)' }}
     transition={{ duration: 0.5, ease: [0.77, 0, 0.175, 1] }}
     style={{ minHeight: '100vh' }}
   >
@@ -47,6 +48,7 @@ const App = () => {
         <Sonner />
         <div className={`global-fadein${fadeIn ? " fadein-active" : ""}`}>
           <BrowserRouter>
+            <Navbar />
             <AppRoutes />
           </BrowserRouter>
         </div>
